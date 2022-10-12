@@ -22,7 +22,7 @@ public class Address
     @Column(name = "addressId")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int aid;
+    private int id;
     private String address;
     // This can br primary or secondary
     // Use own custom annotation

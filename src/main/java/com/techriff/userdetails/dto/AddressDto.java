@@ -1,5 +1,7 @@
 package com.techriff.userdetails.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddressDto {
-    private int aid;
+    private int id;
     private String address;
     private String addressType;
     private int zipCode;

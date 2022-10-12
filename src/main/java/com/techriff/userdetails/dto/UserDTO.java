@@ -19,7 +19,7 @@ public class UserDTO {
 	private String profilePicture;
 	
 	List<UserRoleMapDTO> roles ;
-	List<AddressDto> addressDtos;
+	List<AddressDto> address;
 	
 
 }

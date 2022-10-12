@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.techriff.userdetails.Exception.AgeLimitNotReachedException;
-import com.techriff.userdetails.Exception.DuplicateEmailAddressException;
+import com.techriff.userdetails.Exception.DuplicateResourceException;
 import com.techriff.userdetails.Exception.InCorrectException;
 import com.techriff.userdetails.Exception.RoleCanNotBeDeletedException;
 import com.techriff.userdetails.Exception.RoleNotFoundException;
@@ -54,9 +54,9 @@ public class ApplicatinExceptionHandler {
 		return errorMap;
 	
 	}
-	@ExceptionHandler(DuplicateEmailAddressException.class)
+	@ExceptionHandler(DuplicateResourceException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public Map<String, String> handleDuplicateMailxception(DuplicateEmailAddressException ex)
+	public Map<String, String> handleDuplicateMailxception(DuplicateResourceException ex)
 	{
 		Map<String, String> errorMap =new HashMap<>();
 		errorMap.put("errorMessage", ex.getMessage());

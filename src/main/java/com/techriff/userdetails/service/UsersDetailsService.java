@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.techriff.mail.service.EmailService;
 import com.techriff.userdetails.Exception.AgeLimitNotReachedException;
-import com.techriff.userdetails.Exception.DuplicateEmailAddressException;
+import com.techriff.userdetails.Exception.DuplicateResourceException;
 import com.techriff.userdetails.Exception.ResourceNotFoundException;
 import com.techriff.userdetails.dto.AddressDto;
 import com.techriff.userdetails.dto.MailRequest;
@@ -72,57 +72,6 @@ public class UsersDetailsService {
     //private static Logger logger = LogManager.getLogger(UsersDetailsService.class);
 
 
-
-
-    @SuppressWarnings("unchecked")
-    public JSONObject getAllUsersDetails() {
-
-        JSONObject result = new JSONObject();
-        JSONArray array = new JSONArray();
-        try {
-            List<Users> allusers = usersRepository.findAll();
-            for (Users user : allusers) 
-            {
-
-                UserDTO userDto = new UserDTO();
-                userDto.setId(user.getId());
-                //userDto.setCity(user.getCity());
-                userDto.setFirstName(user.getFirstName());
-                userDto.setLastName(user.getLastName());
-                userDto.setMiddleName(user.getMiddleName());
-                //userDto.setState(user.getState());
-                // userDto.setPassword(user.getPassword());
-                userDto.setEmailAddress(user.getEmailAdress());
-                //userDto.setZipCode(user.getZipCode());
-
-                userDto.setDob(user.getDob());
-                //userDto.setProfilePicture(user.getProfilePicture());
-                List<UserRoleMap> mapList = roleMapRepo.findByUserId(user.getId());
-                List<UserRoleMapDTO> roles = new ArrayList<UserRoleMapDTO>();
-
-                mapList.forEach(roleList -> {
-                    UserRoleMapDTO dto = new UserRoleMapDTO();
-                    dto.setUserRoleId(String.valueOf(roleList.getId().getUserRoleId()));
-                    Optional<UsersRole> roleMaster = roleRepo.findById(roleList.getId().getUserRoleId());
-                    dto.setRoleName(roleMaster.get().getRole());
-                    roles.add(dto);
-                    userDto.setRoles(roles);
-                });
-                List<Address> addresses=addressRepository.findAll();
-                List<AddressDto> addressDtos=new ArrayList<AddressDto>();
-                
-
-                array.add(userDto);
-                result.put("Users", array);
-
-            }
-        } catch (Exception e) {
-            log.warn("User not found"+e);
-        }
-
-        return result;
-    }
-
     public Users getUserDetailsById(int id, UserDTO userDto) throws ResourceNotFoundException {
 
         Users user = usersRepository.findById(id)
@@ -150,52 +99,70 @@ public class UsersDetailsService {
             roles.add(dto);
             userDto.setRoles(roles);
         });
+        List<Address> existingAddress = user.getAddress();
+        List<AddressDto> addresses=new ArrayList<AddressDto>();
+        for(Address mapAddress:existingAddress )
+        {
+            AddressDto addressDto=new AddressDto();
+            addressDto.setId(mapAddress.getId());
+            addressDto.setAddress(mapAddress.getAddress());
+           //addressDto.setAddressType(mapAddress.getAddressTypeId());
+            Optional<AddressType> addressType=addressTypeRepository.findByAddressTypeId(mapAddress.getAddressTypeId());
+            addressDto.setAddressType(addressType.get().getAddressType().toString());
+            
+            addressDto.setCity(mapAddress.getCity());
+            addressDto.setState(mapAddress.getState());
+            addressDto.setZipCode(mapAddress.getZipCode());
+            addresses.add(addressDto);
+            userDto.setAddress(addresses);
+            
+        }
 
         return user;
 
     }
+//
+//    public Users addUserDetails(Users user, MultipartFile[] file) throws Exception {
+//        String reqestEmail = user.getEmailAdress();
+//        Users existingUser = usersRepository.findByEmailAdress(reqestEmail);
+//        if (existingUser != null) {
+//            String existingEmail = existingUser.getEmailAdress();
+//            if (reqestEmail.equals(existingEmail)) {
+//                throw new DuplicateEmailAddressException("Email Address Alredy Exist");
+//
+//            } else
+//                savingUserDetail(user, file);
+//
+//        }
+//
+//        return savingUserDetail(user, file);
+//
+//    }
 
-    public Users addUserDetails(Users user, MultipartFile[] file) throws Exception {
-        String reqestEmail = user.getEmailAdress();
-        Users existingUser = usersRepository.findByEmailAdress(reqestEmail);
-        if (existingUser != null) {
-            String existingEmail = existingUser.getEmailAdress();
-            if (reqestEmail.equals(existingEmail)) {
-                throw new DuplicateEmailAddressException("Email Address Alredy Exist");
-
-            } else
-                savingUserDetail(user, file);
-
-        }
-
-        return savingUserDetail(user, file);
-
-    }
-
-    public Users savingUserDetail(Users user, MultipartFile[] file)
-            throws ParseException, Exception, AgeLimitNotReachedException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar dob = Calendar.getInstance();
-        String dobOfUser = sdf.format(user.getDob());
-        dob.setTime(sdf.parse(dobOfUser));
-        int age = getAge(dob);
-        if (age >= 18) {
-
-            Users saveUser = usersRepository.save(user);
-            profilePicturerSave(file, saveUser);
-
-            List<String> roleId = user.getUsersRoleId();
-            for (String usersRole : roleId) {
-                UserRoleMap roleData = new UserRoleMap();
-                roleData.setId(new UserRoleMapPK(saveUser.getId(), Integer.parseInt(usersRole)));
-                roleMapRepo.save(roleData);
-            }
-
-            return saveUser;
-        } else
-
-            throw new AgeLimitNotReachedException("User's age Should be greater than 18 ");
-    }
+//    public Users savingUserDetail(Users user, MultipartFile[] file)
+//            throws ParseException, Exception, AgeLimitNotReachedException {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Calendar dob = Calendar.getInstance();
+//        String dobOfUser = sdf.format(user.getDob());
+//        dob.setTime(sdf.parse(dobOfUser));
+//        int age = getAge(dob);
+//        if (age >= 18) {
+//
+//            Users saveUser = usersRepository.save(user);
+//            profilePicturerSave(file, saveUser);
+//
+//            List<String> roleId = user.getUsersRoleId();
+//            for (String usersRole : roleId) {
+//                UserRoleMap roleData = new UserRoleMap();
+//                roleData.setId(new UserRoleMapPK(saveUser.getId(), Integer.parseInt(usersRole)));
+//                roleMapRepo.save(roleData);
+//            }
+//
+//            return saveUser;
+//        } else
+//
+//            throw new AgeLimitNotReachedException("User's age Should be greater than 18 ");
+//    }
 
     public Users profilePicturerSave(MultipartFile[] file, Users saveUser) throws IOException {
         if (file.length > 0) {
@@ -276,8 +243,8 @@ public class UsersDetailsService {
             JSONArray array = new JSONArray();
 
             for (Users user : listOfUsers) {
-
                 UserDTO userDto = new UserDTO();
+                //userDto = new UserDTO();
                 userDto.setId(user.getId());
                 userDto.setFirstName(user.getFirstName());
                 userDto.setLastName(user.getLastName());
@@ -300,10 +267,29 @@ public class UsersDetailsService {
                     userDto.setRoles(roles);
 
                 });
+                List<Address> existingAddress = user.getAddress();
+                List<AddressDto> addresses=new ArrayList<AddressDto>();
+                AddressDto addressDto=new AddressDto();
+                for(Address mapAddress:existingAddress )
+                {
+                    addressDto=new AddressDto();
+                    addressDto.setId(mapAddress.getId());
+                    addressDto.setAddress(mapAddress.getAddress());
+                
+                  Optional<AddressType>  addressType=addressTypeRepository.findByAddressTypeId(mapAddress.getAddressTypeId());
+                   addressDto.setAddressType(addressType.get().getAddressType());
+                   
+                    addressDto.setCity(mapAddress.getCity());
+                    addressDto.setState(mapAddress.getState());
+                    addressDto.setZipCode(mapAddress.getZipCode());
+                    addresses.add(addressDto);
+                    userDto.setAddress(addresses);
+                    
+                }
 
 
                 array.add(userDto);
-
+                
                 result.put("users", array);
 
             }
@@ -321,7 +307,7 @@ public class UsersDetailsService {
         if (existingUser != null) {
             String existingEmail = existingUser.getEmailAdress();
             if (reqestEmail.equals(existingEmail)) {
-                throw new DuplicateEmailAddressException("Email Address Alredy Exist");
+                throw new DuplicateResourceException("Email Address Alredy Exist");
 
             } else
                 savingUserDetail(users);
@@ -341,49 +327,64 @@ public class UsersDetailsService {
         int age = getAge(dob);
         if (age >= 18) {
 
-
-
-            List<String> roles = users.getUsersRoleId();
-            for (String usersRole : roles) {
-                UserRoleMap roleData = new UserRoleMap();
-                roleData.setId(new UserRoleMapPK(users.getId(), Integer.parseInt(usersRole)));
-                roleMapRepo.save(roleData);
-                List<Address> addresses = users.getAddress();
-                List<AddressType> exitingAddressType=addressTypeRepository.findAll();
-                for(AddressType addressType:exitingAddressType)
+        
+            
+            List<Address> addresses = users.getAddress();
+            List<AddressType> exitingAddressType=addressTypeRepository.findAll();
+            for (Address data : addresses)
+            {
+               
+                    for( AddressType addressType:exitingAddressType)
 
                 {
-                    for (Address data : addresses)
+                    // int t1=addressType.getId();
+                    //int t2=data.getAddressTypeId();
+                    Optional<AddressType> addressTypes=addressTypeRepository.findById(data.getAddressTypeId());
+                    if((addressTypes.isPresent()))
                     {
-                        // int t1=addressType.getId();
-                        //int t2=data.getAddressTypeId();
-                        Optional<AddressType> addressTypes=addressTypeRepository.findById(data.getAddressTypeId());
-                        if((addressTypes.isPresent()))
+                        int id=data.getAddressTypeId();
+                        Optional<Address> existingAddress=addressRepository.findPrimary(users.getId());
+                        if(!addressTypes.toString().contains("Primary")  );
                         {
-
-
                             Address addressData = new Address();
                             addressData.setAddress(data.getAddress());
                             addressData.setAddressTypeId(data.getAddressTypeId());
                             addressData.setCity(data.getCity());
                             addressData.setState(data.getState());
                             addressData.setZipCode(data.getZipCode());
-                            addressData=addressRepository.save(addressData);
-
                         }
-                        else 
-                            throw new ResourceNotFoundException("Invalid Address Type");
+                        
+                            throw new DuplicateResourceException("Duplicate Primary Address type not allowed");
 
+//                        Address addressData = new Address();
+//                        addressData.setAddress(data.getAddress());
+//                        addressData.setAddressTypeId(data.getAddressTypeId());
+//                        addressData.setCity(data.getCity());
+//                        addressData.setState(data.getState());
+//                        addressData.setZipCode(data.getZipCode());
 
                     }
-
-
+                    else 
+                        throw new ResourceNotFoundException("Invalid Address Type");
 
 
                 }
-            }
-            Users saveUser = usersRepository.save(users);
 
+
+
+
+            }
+             
+           
+
+            List<String> roles = users.getUsersRoleId();
+            Users saveUser = usersRepository.save(users);
+            for (String usersRole : roles) {
+                UserRoleMap roleData = new UserRoleMap();
+                roleData.setId(new UserRoleMapPK(saveUser.getId(), Integer.parseInt(usersRole)));
+               
+                roleMapRepo.save(roleData);
+            }
 
             return saveUser;
         } else

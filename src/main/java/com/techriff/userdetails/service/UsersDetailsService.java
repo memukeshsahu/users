@@ -66,6 +66,8 @@ public class UsersDetailsService {
     private AddressRepository addressRepository;
     @Autowired
     private AddressTypeRepository addressTypeRepository;
+    
+    @Autowired private AddressService addressService;
 
 
     private EmailService emailService;
@@ -319,7 +321,7 @@ public class UsersDetailsService {
     }
     //save data without file
     private Users savingUserDetail(Users users) throws Exception {
-
+        Users requestUser=users;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar dob = Calendar.getInstance();
         String dobOfUser = sdf.format(users.getDob());
@@ -364,13 +366,37 @@ public class UsersDetailsService {
                
                 roleMapRepo.save(roleData);
             }
+//            List<Address> existingData=addressRepository.findAddress(saveUser.getId());
+//            for(Address updateAddresstypeId:existingData)
+//            {
+//                updateAddresstypeId.setAddressTypeId(2);
+//                addressRepository.save(updateAddresstypeId);
+//            }
+//            List< Address> requestAddress= requestUser.getAddress();
+//            for(Address updateAddrressTypeId:requestAddress)
+//            {
+//                int addressTypeId=updateAddrressTypeId.getAddressTypeId();
+//                if(addressTypeId==1)
+//                {
+//                    Address newAddressTypeId=new Address();
+//                    newAddressTypeId.setAddressTypeId(1);
+//                    addressRepository.save(newAddressTypeId);  
+//                }         
+//            }
+            int userId=saveUser.getId();
+      //      System.out.println("user id is :"+userId);
+           Optional<Address>  addresss= addressRepository.findAddressWithPrimary(userId);
+            int addressId=addresss.get().getId();
+ //           System.out.println("Adress id is"+addressId);
+//            
+//                                                                                            
+//            AddressService addressService=new AddressService();
+          addressService.updateAddressType(userId, addressId);
 
             return saveUser;
         } else
 
             throw new AgeLimitNotReachedException("User's age Should be greater than 18 ");
-
-
     }
 
 }

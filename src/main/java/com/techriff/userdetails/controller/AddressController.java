@@ -39,7 +39,7 @@ public class AddressController {
 //        return new ResponseEntity<>(addressService.getAddress(), new HttpHeaders(), HttpStatus.OK);
 //
 //    }
-    @PutMapping("address/{userId}/{addressId}/toPrimary")
+    @PutMapping("users/{userId}/address/{addressId}/primary")
     public ResponseEntity<String> updateAddressType( @PathVariable int userId,@PathVariable int addressId) throws ResourceNotFoundException
     {
        String updateAddress =addressService.updateAddressType(userId,addressId)

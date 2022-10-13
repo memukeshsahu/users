@@ -42,7 +42,7 @@ public class AuthonticateController {
 	private JwtUtill jwtTokenUtil;
 	
 	@Operation(summary = "Gets an bearer token", description = "Gets an bearer token")
-	@PostMapping("/authonticate")
+	@PostMapping("/authenticate")
 	public ResponseEntity<JSONObject> createAuthonticationToken(@RequestBody AuthenticationRequest authonticationRequest) throws Exception
 	{
 		JSONObject result=new JSONObject();

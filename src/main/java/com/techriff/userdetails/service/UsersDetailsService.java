@@ -342,41 +342,20 @@ public class UsersDetailsService {
                     Optional<AddressType> addressTypes=addressTypeRepository.findById(data.getAddressTypeId());
                     if((addressTypes.isPresent()))
                     {
-                        int id=data.getAddressTypeId();
-                        Optional<Address> existingAddress=addressRepository.findPrimary(users.getId());
-                        if(!addressTypes.toString().contains("Primary")  );
-                        {
+                       
+                       
                             Address addressData = new Address();
                             addressData.setAddress(data.getAddress());
                             addressData.setAddressTypeId(data.getAddressTypeId());
                             addressData.setCity(data.getCity());
                             addressData.setState(data.getState());
-                            addressData.setZipCode(data.getZipCode());
-                        }
-                        
-                            throw new DuplicateResourceException("Duplicate Primary Address type not allowed");
-
-//                        Address addressData = new Address();
-//                        addressData.setAddress(data.getAddress());
-//                        addressData.setAddressTypeId(data.getAddressTypeId());
-//                        addressData.setCity(data.getCity());
-//                        addressData.setState(data.getState());
-//                        addressData.setZipCode(data.getZipCode());
-
+                            addressData.setZipCode(data.getZipCode()); 
                     }
                     else 
                         throw new ResourceNotFoundException("Invalid Address Type");
-
-
                 }
-
-
-
-
             }
              
-           
-
             List<String> roles = users.getUsersRoleId();
             Users saveUser = usersRepository.save(users);
             for (String usersRole : roles) {

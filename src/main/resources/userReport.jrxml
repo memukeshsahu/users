@@ -22,7 +22,7 @@
 				<staticText>
 					<reportElement x="20" y="20" width="270" height="50" forecolor="#FFFFFF" uuid="80ae6e78-7e2e-4580-b852-110b01a3661e"/>
 					<textElement>
-						<font fontName="Arial" size="26" isBold="false"/>
+						<font fontName="Algerian" size="26" isBold="false"/>
 					</textElement>
 					<text><![CDATA[USERS DETAILS]]></text>
 				</staticText>
@@ -49,7 +49,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d06b770-b24b-4234-9c23-24c78cc06fb5"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[USER ID]]></text>
 			</staticText>
@@ -58,7 +58,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7c9664bb-16ed-47ee-afc4-d87d774ef88f"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FIRST NAME]]></text>
 			</staticText>
@@ -67,7 +67,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b96aab0-07b6-4f68-89e3-8bbf2fb8d6ea"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MIDDLE NAME]]></text>
 			</staticText>
@@ -76,7 +76,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5bb3edcd-fb37-4499-88c9-8aa6fb026693"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LAST NAME]]></text>
 			</staticText>
@@ -85,7 +85,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="afa60a26-2b00-406a-bdc1-613a8ea73c5a"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[EMAIL]]></text>
 			</staticText>
@@ -94,7 +94,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="de0f2d02-1d0c-4888-9918-5777e4ab01b3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[D.O.B]]></text>
 			</staticText>
@@ -103,7 +103,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="30524c17-a2ad-46d0-8a67-08836f34e1e5"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ROLES]]></text>
 			</staticText>
@@ -112,7 +112,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c9230bde-7958-41d8-b96f-bae218aa88cb"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ADDRESS]]></text>
 			</staticText>
@@ -121,7 +121,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad12cebb-227a-49c6-b364-9cf8f473509c"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CITY]]></text>
 			</staticText>
@@ -130,7 +130,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2950c470-c961-445e-8379-677754d22fe5"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[STATE]]></text>
 			</staticText>
@@ -139,7 +139,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6dc9717-fd96-4e1d-add2-632198d8b7a6"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Monospaced" size="8" isBold="true"/>
+					<font fontName="DejaVu Serif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ZIPCODE]]></text>
 			</staticText>
@@ -193,7 +193,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{emailAdress}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{emailAddress}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
 				<reportElement x="250" y="0" width="50" height="20" uuid="cd425b2b-4264-434a-853c-37bf25f5f171">
@@ -247,7 +247,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{zipCode}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[zipCode}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -20,5 +20,6 @@ public class ReportDTO {
 	private String profilePicture;
 	private int zipCode;
 	private String roles ;
+	private String address;
 	
 }

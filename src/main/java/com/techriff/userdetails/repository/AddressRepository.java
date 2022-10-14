@@ -27,6 +27,9 @@ public interface AddressRepository extends JpaRepository<Address, Integer> {
     @Query(value = query3, nativeQuery = true)
 
     Optional<Address> findAddressWithPrimary(int userId);
+    @Query(value = "SELECT * FROM Address n WHERE n.address_type_id =1 and n.user_address_fk=:userid", nativeQuery = true)
+
+	Address findPrimaryAddress(int userid);
    
 
 }

@@ -32,9 +32,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techriff.userdetails.dto.MailRequest;
 import com.techriff.userdetails.dto.MailResponse;
 import com.techriff.userdetails.dto.ReportDTO;
+import com.techriff.userdetails.entity.Address;
 import com.techriff.userdetails.entity.UserRoleMap;
 import com.techriff.userdetails.entity.Users;
 import com.techriff.userdetails.entity.UsersRole;
+import com.techriff.userdetails.repository.AddressRepository;
 import com.techriff.userdetails.repository.UserRoleMapRepository;
 import com.techriff.userdetails.repository.UsersRepository;
 import com.techriff.userdetails.repository.UsersRoleRepository;
@@ -64,6 +66,7 @@ public class UserReportController {
 	private UserRoleMapRepository roleMapRepo; 
 	@Autowired
 	private UsersRoleRepository roleRepo;
+	@Autowired private AddressRepository addressRepository;
 	String path="D://userReport";
 
 	@GetMapping("users/report")
@@ -103,6 +106,11 @@ public class UserReportController {
 				
 				reportDto.setRoles(roles.toString());
 			});
+			Address addressReport=addressRepository.findPrimaryAddress(user.getId());
+			reportDto.setAddress(addressReport.getAddress());
+			reportDto.setCity(addressReport.getCity());
+			reportDto.setState(addressReport.getState());
+			reportDto.setZipCode(addressReport.getZipCode());
 			
 			usersList.add(reportDto);
 			//result.put("Users", array);
@@ -124,38 +132,38 @@ public class UserReportController {
 		 ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		 JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
 	    DataSource aAttachment =  new ByteArrayDataSource(baos.toByteArray(), "application/pdf");
-	    MailResponse response = new MailResponse();
-		MimeMessage message = sender.createMimeMessage();
-		try {
-			// set mediaType
-			MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
-					StandardCharsets.UTF_8.name());
-			// add attachment
-			helper.addAttachment("user-report.pdf", aAttachment);
-
-			//Template t = config.getTemplate("email-template.ftl");
-			//String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
-
-			helper.setTo("mukesh.sahu@techriff.in");
-			//helper.setText(html, true);
-		    String text = "Good day Sir\r\n"
-		    		+ "\r\n"
-		    		+ "Please see below the Report ";
-
-		    helper.setText(text, false);
-			helper.setSubject("Sending You User Report");
-			helper.setFrom("memukeshsahoo@gmail.com");
-			sender.send(message);
-
-			response.setMessage("mail send to : " + "mukesh.sahu@techriff.in");
-			response.setStatus(Boolean.TRUE);
-
-		} catch (MessagingException e) {
-			response.setMessage("Mail Sending failure : "+e.getMessage());
-			response.setStatus(Boolean.FALSE);
-		}
-
-		
+//	    MailResponse response = new MailResponse();
+//		MimeMessage message = sender.createMimeMessage();
+//		try {
+//			// set mediaType
+//			MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+//					StandardCharsets.UTF_8.name());
+//			// add attachment
+//			helper.addAttachment("user-report.pdf", aAttachment);
+//
+//			//Template t = config.getTemplate("email-template.ftl");
+//			//String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
+//
+//			helper.setTo("mukesh.sahu@techriff.in");
+//			//helper.setText(html, true);
+//		    String text = "Good day Sir\r\n"
+//		    		+ "\r\n"
+//		    		+ "Please see below the Report ";
+//
+//		    helper.setText(text, false);
+//			helper.setSubject("Sending You User Report");
+//			helper.setFrom("memukeshsahoo@gmail.com");
+//			sender.send(message);
+//
+//			response.setMessage("mail send to : " + "mukesh.sahu@techriff.in");
+//			response.setStatus(Boolean.TRUE);
+//
+//		} catch (MessagingException e) {
+//			response.setMessage("Mail Sending failure : "+e.getMessage());
+//			response.setStatus(Boolean.FALSE);
+//		}
+//
+//		
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Disposition", "inline; filename=user-report.pdf");

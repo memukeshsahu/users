@@ -86,6 +86,6 @@ import lombok.Setter;
 //		)
 	//	@JsonManagedReference
 		@Transient
-		private List<String> usersRoleId;
+		private List<Integer> usersRoleId;
 
 }

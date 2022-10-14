@@ -48,7 +48,7 @@ public class RoleCriteriaManagerRepository {
 		Pageable pageable = getPageable(rolesPage);
 		long usersCount = getUsersCount(predicate);
 
-		return new PageImpl<>(typedQuery.getResultList(), pageable, usersCount);
+		return new PageImpl<>(typedQuery.getResultList(), pageable,usersCount);
 
 	}
 

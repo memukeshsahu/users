@@ -246,7 +246,7 @@ public class UsersDetailsService {
 
             for (Users user : listOfUsers) {
                 UserDTO userDto = new UserDTO();
-                //userDto = new UserDTO();
+                
                 userDto.setId(user.getId());
                 userDto.setFirstName(user.getFirstName());
                 userDto.setLastName(user.getLastName());
@@ -358,39 +358,29 @@ public class UsersDetailsService {
                 }
             }
              
-            List<String> roles = users.getUsersRoleId();
+            List<Integer> roles = users.getUsersRoleId();
             Users saveUser = usersRepository.save(users);
-            for (String usersRole : roles) {
+            for (int usersRole : roles) {
+                Optional<UsersRole> ExistingRole=roleRepo.findById(usersRole);
+                if(ExistingRole.isPresent())
+                {
                 UserRoleMap roleData = new UserRoleMap();
-                roleData.setId(new UserRoleMapPK(saveUser.getId(), Integer.parseInt(usersRole)));
+                roleData.setId(new UserRoleMapPK(saveUser.getId(), usersRole));
                
                 roleMapRepo.save(roleData);
+                }
+                else
+                {
+                    usersRepository.delete(saveUser);
+                throw new ResourceNotFoundException("Invalid userRole id");
+                }
             }
-//            List<Address> existingData=addressRepository.findAddress(saveUser.getId());
-//            for(Address updateAddresstypeId:existingData)
-//            {
-//                updateAddresstypeId.setAddressTypeId(2);
-//                addressRepository.save(updateAddresstypeId);
-//            }
-//            List< Address> requestAddress= requestUser.getAddress();
-//            for(Address updateAddrressTypeId:requestAddress)
-//            {
-//                int addressTypeId=updateAddrressTypeId.getAddressTypeId();
-//                if(addressTypeId==1)
-//                {
-//                    Address newAddressTypeId=new Address();
-//                    newAddressTypeId.setAddressTypeId(1);
-//                    addressRepository.save(newAddressTypeId);  
-//                }         
-//            }
+
             int userId=saveUser.getId();
-      //      System.out.println("user id is :"+userId);
+    
            Optional<Address>  addresss= addressRepository.findAddressWithPrimary(userId);
             int addressId=addresss.get().getId();
- //           System.out.println("Adress id is"+addressId);
-//            
-//                                                                                            
-//            AddressService addressService=new AddressService();
+
           addressService.updateAddressType(userId, addressId);
 
             return saveUser;

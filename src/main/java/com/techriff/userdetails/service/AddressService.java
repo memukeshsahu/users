@@ -39,7 +39,11 @@ public class AddressService {
 
 
     public String updateAddressType(int userId,int addressesId) throws ResourceNotFoundException {
+        Address existingAddressTypeId=addressRepository.findById(addressesId).orElseThrow(
+                () -> new ResourceNotFoundException("Address Not Found with addressId :" + addressesId)
+                );
         try {
+            
             List<Address> existingData=addressRepository.findAddress(userId);
             
             for(Address updateAddresstypeId:existingData)
@@ -52,9 +56,7 @@ public class AddressService {
 
         }
        
-       Address existingAddressTypeId=addressRepository.findById(addressesId).orElseThrow(
-               () -> new ResourceNotFoundException("Address Not Found with addressId :" + addressesId)
-               );
+       
        existingAddressTypeId.setAddressTypeId(1);
        addressRepository.save(existingAddressTypeId);
         

@@ -25,10 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.techriff.userdetails.Exception.ResourceNotFoundException;
+import com.techriff.userdetails.dto.PasswordDto;
 import com.techriff.userdetails.dto.UserDTO;
 import com.techriff.userdetails.entity.Users;
 import com.techriff.userdetails.pages.UsersPage;
 import com.techriff.userdetails.pages.UsersSearchCriteria;
+import com.techriff.userdetails.service.PasswordService;
 import com.techriff.userdetails.service.UsersDetailsService;
 import com.techriff.userdetails.util.Mapper;
 
@@ -42,6 +44,8 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 public class UsersController {
     @Autowired
     private UsersDetailsService usersService;
+    @Autowired
+    private PasswordService passwordService;
 
     private static Logger logger= Logger.getLogger(UsersController.class);
 
@@ -105,5 +109,13 @@ public class UsersController {
         return new ResponseEntity<>(usersService.getUserDetails(usersPage, usersSearchCriteria), new HttpHeaders(),
                 HttpStatus.OK);
     }
+    @PutMapping("users/{emailAddress}/resetPassword")
+  public ResponseEntity<String>  resetPassword(@RequestBody PasswordDto password,@PathVariable String emailAddress) throws Exception
+  {
+        String resetPassword=passwordService.resetPassword(password,emailAddress);
+        
+        return new ResponseEntity<>(resetPassword,new HttpHeaders(),HttpStatus.OK);
+  }
+    
 
 }

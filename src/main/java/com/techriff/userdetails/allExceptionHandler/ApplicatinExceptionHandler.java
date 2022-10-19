@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.techriff.userdetails.Exception.AgeLimitNotReachedException;
 import com.techriff.userdetails.Exception.DuplicateResourceException;
 import com.techriff.userdetails.Exception.InCorrectException;
+import com.techriff.userdetails.Exception.PasswordNotMatchedException;
 import com.techriff.userdetails.Exception.RoleCanNotBeDeletedException;
 import com.techriff.userdetails.Exception.RoleNotFoundException;
 import com.techriff.userdetails.Exception.ResourceNotFoundException;
@@ -90,6 +91,15 @@ public class ApplicatinExceptionHandler {
 		return errorMap;
 	
 	}
+	@ExceptionHandler(PasswordNotMatchedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> handlePassword(PasswordNotMatchedException ex)
+    {
+        Map<String, String> errorMap =new HashMap<>();
+        errorMap.put("errorMessage", ex.getMessage());
+        return errorMap;
+    
+    }
 
 
 }

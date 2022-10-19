@@ -13,7 +13,6 @@ public class ReportDTO {
 	private String firstName;
 	private String middleName;
 	private String lastName;
-//	private String password;
 	private String city;
 	private String state;
 	private Date dob;

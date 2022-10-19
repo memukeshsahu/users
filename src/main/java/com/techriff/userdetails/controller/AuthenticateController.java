@@ -27,8 +27,8 @@ import net.minidev.json.JSONObject;
 
 @SuppressWarnings("unused")
 @RestController
-public class AuthEnticateController {
-	private static Logger log= Logger.getLogger(AuthEnticateController.class);
+public class AuthenticateController {
+	private static Logger log= Logger.getLogger(AuthenticateController.class);
 
 	
 	@Autowired

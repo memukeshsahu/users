@@ -110,7 +110,7 @@ public class UsersDetailsService {
             addressDto.setAddress(mapAddress.getAddress());
            //addressDto.setAddressType(mapAddress.getAddressTypeId());
             Optional<AddressType> addressType=addressTypeRepository.findByAddressTypeId(mapAddress.getAddressTypeId());
-            addressDto.setAddressType(addressType.get().getAddressType().toString());
+            addressDto.setAddressType(addressType.get().getAddressType());
             
             addressDto.setCity(mapAddress.getCity());
             addressDto.setState(mapAddress.getState());
@@ -388,5 +388,7 @@ public class UsersDetailsService {
 
             throw new AgeLimitNotReachedException("User's age Should be greater than 18 ");
     }
+
+   
 
 }

@@ -16,7 +16,7 @@ public class UserDTO {
 //	private String password;
 	
 	private Date dob;
-	private String profilePicture;
+	//private String profilePicture;
 	
 	List<UserRoleMapDTO> roles ;
 	List<AddressDto> address;

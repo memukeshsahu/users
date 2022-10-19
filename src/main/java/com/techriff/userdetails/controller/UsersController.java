@@ -7,6 +7,8 @@ import javax.validation.Valid;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -54,6 +56,7 @@ public class UsersController {
 
 
     @GetMapping("/users/{id}")
+    @Cacheable(cacheNames = "users",key = "#id")
     @Operation(summary = "Get user by Id", description = "Get user by Id")
     public ResponseEntity<Object> getUserDetailsById(@PathVariable("id") int id) throws ResourceNotFoundException {
         logger.info("UsersController:getUserById execution started..");
@@ -89,11 +92,14 @@ public class UsersController {
     // @PutMapping("/users")
     @Operation(summary = "Delete user by Id", description = "Detelte user by Id")
     @DeleteMapping("/users/{id}")
+    @CacheEvict(cacheNames = "users",key = "#id")
     public String DeleteUser(@PathVariable("id") int id) {
         return usersService.deleteuserById(id);
     }
+    
     @Operation(summary = "Get list of  user details", description = "Get user details with pagination and sorting filter")
     @GetMapping("/users")
+    @Cacheable(value="users")  
     public ResponseEntity<JSONObject> getUsersDetaiils(UsersPage usersPage, UsersSearchCriteria usersSearchCriteria) {
 
         return new ResponseEntity<>(usersService.getUserDetails(usersPage, usersSearchCriteria), new HttpHeaders(),

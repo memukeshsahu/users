@@ -62,6 +62,30 @@ public class AddressService {
     }
 
 
+    public Users addAddress(int userId, Address address) throws ResourceNotFoundException {
+    Users existingUser=usersRepository.findById(userId).orElseThrow(
+            ()->new ResourceNotFoundException("invalid userId"));
+    usersRepository.save(existingUser);
+  List<Address>  addresses=existingUser.getAddress();
+  for(Address addAddress:addresses)
+  {
+  
+      addAddress.setAddress(addAddress.getAddress());
+      addAddress.setAddressTypeId(addAddress.getAddressTypeId());
+      addAddress.setCity(addAddress.getCity());
+      addAddress.setState(addAddress.getState());
+      addAddress.setZipCode(addAddress.getZipCode());
+  
+   
+     
+  }
+  existingUser.setAddress(addresses);
+  addressRepository.save(address);
+  return   usersRepository.save(existingUser);
+
+    }
+
+
    
 
 }

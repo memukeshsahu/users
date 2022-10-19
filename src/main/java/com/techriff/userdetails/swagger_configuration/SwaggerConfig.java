@@ -17,7 +17,9 @@ import io.swagger.v3.oas.annotations.servers.Server;
 		    title = "User API",
 		    version = "V1.0.1",
 		    contact = @Contact(
-		      name = "Mukesh Kumar Sahu", email = "mukesh.sahu@techriff.in", url = "https://users-details-heroku.herokuapp.com/swagger-ui/index.html"
+		      name = "Mukesh Kumar Sahu", email = "mukesh.sahu@techriff.in", 
+		      url = "https://www.facebook.com/memukeshsahoo/"
+		      
 		    ),
 		    license = @License(
 		      name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0"

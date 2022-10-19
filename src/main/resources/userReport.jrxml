@@ -154,7 +154,7 @@
 				<reportElement x="0" y="0" width="50" height="20" uuid="076d209e-f8a6-4fea-9837-977fc3c22552">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d06b770-b24b-4234-9c23-24c78cc06fb5"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
@@ -163,7 +163,7 @@
 				<reportElement x="50" y="0" width="50" height="20" uuid="615ee1a4-30ff-4602-81d9-dd149cbd18d2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7c9664bb-16ed-47ee-afc4-d87d774ef88f"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
@@ -172,7 +172,7 @@
 				<reportElement x="100" y="0" width="50" height="20" uuid="651285b2-c397-4390-acf0-592b7acabd12">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b96aab0-07b6-4f68-89e3-8bbf2fb8d6ea"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{middleName}]]></textFieldExpression>
@@ -181,7 +181,7 @@
 				<reportElement x="150" y="0" width="50" height="20" uuid="4fe8bf20-655b-4c03-ba5b-96d8e9e52363">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5bb3edcd-fb37-4499-88c9-8aa6fb026693"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression>
@@ -190,7 +190,7 @@
 				<reportElement x="200" y="0" width="50" height="20" uuid="e1b1ce1c-1c95-48d0-8066-d3947305116c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="afa60a26-2b00-406a-bdc1-613a8ea73c5a"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{emailAddress}]]></textFieldExpression>
@@ -199,7 +199,7 @@
 				<reportElement x="250" y="0" width="50" height="20" uuid="cd425b2b-4264-434a-853c-37bf25f5f171">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="de0f2d02-1d0c-4888-9918-5777e4ab01b3"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{dob}]]></textFieldExpression>
@@ -208,7 +208,7 @@
 				<reportElement x="300" y="0" width="50" height="20" uuid="afd6e18e-6ed1-42aa-9cf7-84bb8b097212">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="30524c17-a2ad-46d0-8a67-08836f34e1e5"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{roles}.toString().substring(1,$F{roles}.toString().length()-1 )]]></textFieldExpression>
@@ -217,7 +217,7 @@
 				<reportElement x="350" y="0" width="50" height="20" uuid="7140a618-6edd-43aa-b89b-4e3627d14edb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c9230bde-7958-41d8-b96f-bae218aa88cb"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
@@ -226,7 +226,7 @@
 				<reportElement x="400" y="0" width="50" height="20" uuid="0eaf419b-c9f3-4db3-afc1-17a312cf481d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ad12cebb-227a-49c6-b364-9cf8f473509c"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
@@ -235,7 +235,7 @@
 				<reportElement x="450" y="0" width="50" height="20" uuid="99e371a5-4844-4a1c-ae2d-e9cd14be6927">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2950c470-c961-445e-8379-677754d22fe5"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
@@ -244,7 +244,7 @@
 				<reportElement x="500" y="0" width="50" height="20" uuid="dbc9e5a3-8bb8-48bb-a561-78dc10b37a19">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a6dc9717-fd96-4e1d-add2-632198d8b7a6"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[zipCode}]]></textFieldExpression>

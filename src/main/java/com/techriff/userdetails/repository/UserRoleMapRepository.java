@@ -1,6 +1,7 @@
 package com.techriff.userdetails.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -19,7 +20,7 @@ public interface UserRoleMapRepository extends JpaRepository<UserRoleMap, UserRo
 	
 	@Query("SELECT n FROM UserRoleMap n WHERE n.id.userRoleId =:existingRoleId")
 
-	UserRoleMap findByRoleId(int existingRoleId);
+	List<UserRoleMap> findByRoleId(int existingRoleId);
 	
 	
 	

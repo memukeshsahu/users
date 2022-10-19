@@ -18,6 +18,7 @@ import javax.mail.util.ByteArrayDataSource;
 
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -70,6 +71,7 @@ public class UserReportController {
 	String path="D://userReport";
 
 	@GetMapping("users/report")
+	@Cacheable(value="usersReportInfo") 
 	public ResponseEntity<byte[]> exportReport() throws FileNotFoundException, JRException
 	{
 		List<Users> listOfUser=usersRepository.findAll();
@@ -107,6 +109,7 @@ public class UserReportController {
 				reportDto.setRoles(roles.toString());
 			});
 			Address addressReport=addressRepository.findPrimaryAddress(user.getId());
+			System.out.println(addressReport.getAddress());
 			reportDto.setAddress(addressReport.getAddress());
 			reportDto.setCity(addressReport.getCity());
 			reportDto.setState(addressReport.getState());

@@ -95,7 +95,7 @@ public class UsersDetailsService {
         mapList.forEach(roleList -> {
             UserRoleMapDTO dto = new UserRoleMapDTO();
             // dto.setUserId(String.valueOf(roleList.getId().getUserId()));
-            dto.setUserRoleId(String.valueOf(roleList.getId().getUserRoleId()));
+            dto.setUserRoleId(roleList.getId().getUserRoleId());
             Optional<UsersRole> roleMaster = roleRepo.findById(roleList.getId().getUserRoleId());
             dto.setRoleName(roleMaster.get().getRole());
             roles.add(dto);
@@ -262,7 +262,7 @@ public class UsersDetailsService {
 
                 mapList.forEach(roleList -> {
                     UserRoleMapDTO dto = new UserRoleMapDTO();
-                    dto.setUserRoleId(String.valueOf(roleList.getId().getUserRoleId()));
+                    dto.setUserRoleId(roleList.getId().getUserRoleId());
                     Optional<UsersRole> roleMaster = roleRepo.findById(roleList.getId().getUserRoleId());
                     dto.setRoleName(roleMaster.get().getRole());
                     roles.add(dto);

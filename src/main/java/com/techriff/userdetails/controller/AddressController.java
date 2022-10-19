@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,9 +43,15 @@ public class AddressController {
     @PutMapping("users/{userId}/address/{addressId}/primary")
     public ResponseEntity<String> updateAddressType( @PathVariable int userId,@PathVariable int addressId) throws ResourceNotFoundException
     {
-       String updateAddress =addressService.updateAddressType(userId,addressId)
-;        return new ResponseEntity<>(updateAddress, new HttpHeaders(),HttpStatus.OK);
+       String updateAddress =addressService.updateAddressType(userId,addressId);      
+       return new ResponseEntity<>(updateAddress, new HttpHeaders(),HttpStatus.OK);
     }
-    
+//    @PostMapping("/users/{userId}/address")
+//    public ResponseEntity<Users> addAddress(@PathVariable int userId,@RequestBody Address address) throws ResourceNotFoundException
+//    {
+//        Users newAddress = addressService.addAddress(userId,address);
+//                
+//        return new ResponseEntity<>(newAddress,new HttpHeaders(),HttpStatus.CREATED);
+//    }
 
 }

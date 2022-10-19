@@ -2,6 +2,7 @@ package com.techriff.userdetails.service;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +54,8 @@ public class UsersRoleService {
 	public String deleteUserRoleById(int id) throws RoleNotFoundException, RoleCanNotBeDeletedException {
 		UsersRole existingRole=roleRepository.findById(id).orElseThrow(()-> new RoleNotFoundException("Role Not Found"));
 		int existingRoleId=existingRole.getId();
-		UserRoleMap userRoleMap=new UserRoleMap();
-		UserRoleMap existingRoleMap=mapRepository.findByRoleId(existingRoleId);
-		if(existingRoleMap!=null  )
+		List<UserRoleMap> existingRoleMap=mapRepository.findByRoleId(existingRoleId);
+		if(existingRoleMap!=null )
 		{
 			throw  new RoleCanNotBeDeletedException("Role can't be deleted as it has assigned users");
 		}

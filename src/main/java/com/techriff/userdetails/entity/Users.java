@@ -1,5 +1,6 @@
 package com.techriff.userdetails.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -42,7 +43,7 @@ import lombok.Setter;
 	@Setter
 	@NoArgsConstructor
 	@AllArgsConstructor
-	public class Users {
+	public class Users  {
 		@Id
 		@Column(name = "userId")
 		@GeneratedValue(strategy = GenerationType.IDENTITY)

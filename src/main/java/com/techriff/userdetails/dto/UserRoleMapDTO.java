@@ -6,7 +6,7 @@ import lombok.Data;
 public class UserRoleMapDTO {
 	
 //	private String userId;
-	private String userRoleId;
+	private int userRoleId;
 	private String roleName;
 
 }

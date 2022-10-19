@@ -27,8 +27,8 @@ import net.minidev.json.JSONObject;
 
 @SuppressWarnings("unused")
 @RestController
-public class AuthonticateController {
-	private static Logger log= Logger.getLogger(AuthonticateController.class);
+public class AuthEnticateController {
+	private static Logger log= Logger.getLogger(AuthEnticateController.class);
 
 	
 	@Autowired
@@ -63,7 +63,7 @@ public class AuthonticateController {
 		
 		JwtUtill jwtUtill= new JwtUtill();
 		Date date= jwtUtill.extractExpiration(jwt);
-		result.put("Token Expire Time", date);
+		result.put("expires", date);
 		result.put("jwtToken", jwt);
 		result.put("firstName", getUserDetails.getFirstName());
 		result.put("lastName", getUserDetails.getLastName());

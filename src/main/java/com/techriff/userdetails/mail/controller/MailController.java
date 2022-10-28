@@ -1,4 +1,4 @@
-package com.techriff.mail.controller;
+package com.techriff.userdetails.mail.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techriff.mail.service.EmailService;
 import com.techriff.userdetails.dto.MailRequest;
 import com.techriff.userdetails.dto.MailResponse;
+import com.techriff.userdetails.mail.service.EmailService;
 
 @RestController
 public class MailController 

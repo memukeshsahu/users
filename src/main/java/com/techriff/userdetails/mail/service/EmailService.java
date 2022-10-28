@@ -1,4 +1,4 @@
-package com.techriff.mail.service;
+package com.techriff.userdetails.mail.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

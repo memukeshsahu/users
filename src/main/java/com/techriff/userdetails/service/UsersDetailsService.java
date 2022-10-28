@@ -18,11 +18,11 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import com.techriff.mail.service.EmailService;
 import com.techriff.userdetails.Exception.AgeLimitNotReachedException;
 import com.techriff.userdetails.Exception.DuplicateResourceException;
 import com.techriff.userdetails.Exception.ResourceNotFoundException;
@@ -33,14 +33,19 @@ import com.techriff.userdetails.dto.UserDTO;
 import com.techriff.userdetails.dto.UserRoleMapDTO;
 import com.techriff.userdetails.entity.Address;
 import com.techriff.userdetails.entity.AddressType;
+import com.techriff.userdetails.entity.PasswordResetToken;
+import com.techriff.userdetails.entity.TemporaryPassword;
 import com.techriff.userdetails.entity.UserRoleMap;
 import com.techriff.userdetails.entity.UserRoleMapPK;
 import com.techriff.userdetails.entity.Users;
 import com.techriff.userdetails.entity.UsersRole;
+import com.techriff.userdetails.mail.service.EmailService;
 import com.techriff.userdetails.pages.UsersPage;
 import com.techriff.userdetails.pages.UsersSearchCriteria;
 import com.techriff.userdetails.repository.AddressRepository;
 import com.techriff.userdetails.repository.AddressTypeRepository;
+import com.techriff.userdetails.repository.PasswordResetTokenRepository;
+import com.techriff.userdetails.repository.TemporaryPasswordRepository;
 import com.techriff.userdetails.repository.UserRoleMapRepository;
 import com.techriff.userdetails.repository.UsersCriteriaManagerRepository;
 import com.techriff.userdetails.repository.UsersRepository;
@@ -68,7 +73,10 @@ public class UsersDetailsService {
     private AddressTypeRepository addressTypeRepository;
     
     @Autowired private AddressService addressService;
-
+    @Autowired PasswordResetTokenRepository passwordResetTokenRepository;
+    @Autowired TemporaryPasswordRepository  tempRepo;
+    
+   
 
     private EmailService emailService;
     //private static Logger logger = LogManager.getLogger(UsersDetailsService.class);
@@ -321,13 +329,17 @@ public class UsersDetailsService {
     }
     //save data without file
     private Users savingUserDetail(Users users) throws Exception {
-        Users requestUser=users;
+       
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar dob = Calendar.getInstance();
         String dobOfUser = sdf.format(users.getDob());
         dob.setTime(sdf.parse(dobOfUser));
         int age = getAge(dob);
         if (age >= 18) {
+            users.setPassword(
+                bCryptPasswordEncoder.encode(users.getPassword())
+                
+            );
 
         
             
@@ -387,6 +399,19 @@ public class UsersDetailsService {
         } else
 
             throw new AgeLimitNotReachedException("User's age Should be greater than 18 ");
+    }
+
+    public void createPasswordResetTokenForUser(Users existingUser, String token) {
+        PasswordResetToken passwordResetToken = new PasswordResetToken(existingUser,token);
+        passwordResetTokenRepository.save(passwordResetToken);
+        
+    }
+
+    public void createTemporaryPasswordForUser(Users existingUsers, String password) {
+        
+        TemporaryPassword tempPassword=new TemporaryPassword(password,existingUsers);
+        tempRepo.save(tempPassword);
+        
     }
 
    

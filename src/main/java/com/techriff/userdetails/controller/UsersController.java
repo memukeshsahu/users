@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import com.google.gson.Gson;
 import com.techriff.userdetails.Exception.ResourceNotFoundException;
 import com.techriff.userdetails.dto.PasswordDto;
 import com.techriff.userdetails.dto.UserDTO;
+import com.techriff.userdetails.entity.PasswordModel;
 import com.techriff.userdetails.entity.Users;
 import com.techriff.userdetails.pages.UsersPage;
 import com.techriff.userdetails.pages.UsersSearchCriteria;
@@ -46,6 +48,7 @@ public class UsersController {
     private UsersDetailsService usersService;
     @Autowired
     private PasswordService passwordService;
+    
 
     private static Logger logger= Logger.getLogger(UsersController.class);
 
@@ -109,13 +112,21 @@ public class UsersController {
         return new ResponseEntity<>(usersService.getUserDetails(usersPage, usersSearchCriteria), new HttpHeaders(),
                 HttpStatus.OK);
     }
-    @PutMapping("users/{emailAddress}/resetPassword")
+    @PutMapping("users/{emailAddress}/changePassword")
   public ResponseEntity<String>  resetPassword(@RequestBody PasswordDto password,@PathVariable String emailAddress) throws Exception
   {
         String resetPassword=passwordService.resetPassword(password,emailAddress);
         
         return new ResponseEntity<>(resetPassword,new HttpHeaders(),HttpStatus.OK);
   }
+    @PutMapping("/users/resetPassword/{temporaryPassword}")
+    public ResponseEntity<String>resetPassword(@PathVariable String temporaryPassword, PasswordModel passwordModel) throws Exception
+    
+    {
+        String resetPassword= passwordService.resetPassword(temporaryPassword, passwordModel);
+        return new ResponseEntity<>(resetPassword,new HttpHeaders(),HttpStatus.OK);
+        
+    }
     
 
 }

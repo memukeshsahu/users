@@ -1,4 +1,4 @@
-package com.techriff.mail.config;
+package com.techriff.userdetails.mail.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -65,6 +65,9 @@ import lombok.Setter;
 		@NotEmpty(message = "Password can't be empty")
 		@Column(nullable = false)
 		private String password;
+		
+		
+		private String passwordType="Primary";
 
 		@OneToMany(targetEntity = Address.class,cascade = CascadeType.ALL)
 		@JoinColumn(name = "user_address_fk",referencedColumnName = "userId")

@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class PasswordDto {
-    String password;
+	//String oldPassword;
+    String newPassword;
     String confirmPassword;
 
 }

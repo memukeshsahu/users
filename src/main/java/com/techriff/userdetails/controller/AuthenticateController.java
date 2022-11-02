@@ -77,7 +77,7 @@ public class AuthenticateController {
         catch (Exception e) {
             throw new InCorrectException("Incorrect credential",e);
         }
-        final UserDetails userDetails =myUserDetailsService.loadUserByUsername(authonticationRequest.getUsername(),authonticationRequest.getPassword());
+        final UserDetails userDetails =myUserDetailsService.loadUserByUsername(authonticationRequest.getUsername());
         final String jwt=jwtTokenUtil.generateToken(userDetails);
         //		Users user=new Users();
         //		user=usersRepository.findByEmailAdress(authonticationRequest.getUsername());

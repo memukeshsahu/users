@@ -6,9 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.techriff.userdetails.validationAnnotation.ValidateAdressType;
-import com.techriff.userdetails.validationAnnotation.ValidateAdressType;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

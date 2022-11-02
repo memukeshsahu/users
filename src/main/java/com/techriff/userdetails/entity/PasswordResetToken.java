@@ -3,6 +3,7 @@ package com.techriff.userdetails.entity;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class PasswordResetToken {
 
     private Date expirationTime;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_USER_PASSWORD_TOKEN",referencedColumnName = "userId")
     private Users user;
 

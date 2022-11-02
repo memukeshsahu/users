@@ -13,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +47,6 @@ public class UsersController {
     private UsersDetailsService usersService;
     @Autowired
     private PasswordService passwordService;
-    
 
     private static Logger logger= Logger.getLogger(UsersController.class);
 
@@ -100,7 +98,7 @@ public class UsersController {
     @Operation(summary = "Delete user by Id", description = "Detelte user by Id")
     @DeleteMapping("/users/{id}")
     @CacheEvict(cacheNames = "users",key = "#id")
-    public String DeleteUser(@PathVariable("id") int id) {
+    public String DeleteUser(@PathVariable("id") int id) throws ResourceNotFoundException {
         return usersService.deleteuserById(id);
     }
     
@@ -119,14 +117,14 @@ public class UsersController {
         
         return new ResponseEntity<>(resetPassword,new HttpHeaders(),HttpStatus.OK);
   }
-    @PutMapping("/users/resetPassword/{temporaryPassword}")
-    public ResponseEntity<String>resetPassword(@PathVariable String temporaryPassword, PasswordModel passwordModel) throws Exception
-    
-    {
-        String resetPassword= passwordService.resetPassword(temporaryPassword, passwordModel);
-        return new ResponseEntity<>(resetPassword,new HttpHeaders(),HttpStatus.OK);
-        
-    }
+//    @PutMapping("/users/resetPassword/{temporaryPassword}")
+//    public ResponseEntity<String>resetPassword(@PathVariable String temporaryPassword, PasswordModel passwordModel) throws Exception
+//    
+//    {
+//        String resetPassword= passwordService.resetPassword(temporaryPassword, passwordModel);
+//        return new ResponseEntity<>(resetPassword,new HttpHeaders(),HttpStatus.OK);
+//        
+//    }
     
 
 }

@@ -1,4 +1,4 @@
-package com.techriff.userdetails.mail.config;
+package com.techriff.freemarker.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 @Configuration
-public class MailConfig {
+public class Fremarker {
 	@Primary
 	@Bean 
 	public FreeMarkerConfigurationFactoryBean factoryBean() {

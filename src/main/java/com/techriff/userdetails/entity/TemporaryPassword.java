@@ -2,6 +2,7 @@ package com.techriff.userdetails.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ public class TemporaryPassword {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String  tempPassword;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_USER_TEMP_PASSWORD",referencedColumnName = "userId")
     private Users user;
     private boolean flag=false;

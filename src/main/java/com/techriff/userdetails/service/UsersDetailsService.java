@@ -51,7 +51,6 @@ import com.techriff.userdetails.repository.UsersCriteriaManagerRepository;
 import com.techriff.userdetails.repository.UsersRepository;
 import com.techriff.userdetails.repository.UsersRoleRepository;
 import com.techriff.userdetails.util.FileUtil;
-import com.techriff.userdetails.validationAnnotation.ValidateAdressType;
 
 @Service
 @Profile(value = { "local", "dev","test"})

@@ -1,7 +1,6 @@
 package com.techriff.userdetails.entity;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;

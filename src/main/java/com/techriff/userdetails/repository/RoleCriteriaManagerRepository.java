@@ -18,12 +18,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import com.techriff.userdetails.entity.Users;
 import com.techriff.userdetails.entity.UsersRole;
 import com.techriff.userdetails.pages.RolesPage;
 import com.techriff.userdetails.pages.RolesSearchCriteria;
-import com.techriff.userdetails.pages.UsersPage;
-import com.techriff.userdetails.pages.UsersSearchCriteria;
 
 @Repository
 public class RoleCriteriaManagerRepository {

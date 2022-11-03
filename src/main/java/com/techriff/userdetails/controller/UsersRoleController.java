@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techriff.userdetails.Exception.ResourceNotFoundException;
 import com.techriff.userdetails.Exception.RoleCanNotBeDeletedException;
 import com.techriff.userdetails.Exception.RoleNotFoundException;
+import com.techriff.userdetails.dto.RolesDto;
 import com.techriff.userdetails.entity.Users;
 import com.techriff.userdetails.entity.UsersRole;
 import com.techriff.userdetails.pages.RolesPage;
@@ -46,18 +48,18 @@ public class UsersRoleController {
 	@Operation(summary = "Add user role ", description = " Add role into  db ")
 
 
-	public ResponseEntity<UsersRole> addUsersRole( @RequestBody UsersRole usersRole) {
+	public ResponseEntity<UsersRole> addUsersRole( @RequestBody UsersRole usersRole) throws ResourceNotFoundException {
 		UsersRole  addRole = roleService.addUsersRole(usersRole);
 		return new ResponseEntity<>(addRole, new HttpHeaders(), HttpStatus.CREATED);
 	}
-	@PostMapping("/roles")
-    @Operation(summary = "Add list of user role ", description = " Add role into  db ")
+	// @PostMapping("/roles")
+    // @Operation(summary = "Add list of user role ", description = " Add role into  db ")
 
 
-    public ResponseEntity<List<UsersRole>> addUsersRoles( @RequestBody List<UsersRole> usersRole) {
-	    List<UsersRole>  addRole = roleService.addUsersRoles(usersRole);
-        return new ResponseEntity<>(addRole, new HttpHeaders(), HttpStatus.CREATED);
-    }
+    // public ResponseEntity<List<UsersRole>> addUsersRoles( @RequestBody List<UsersRole> usersRole) {
+	//     List<UsersRole>  addRole = roleService.addUsersRoles(usersRole);
+    //     return new ResponseEntity<>(addRole, new HttpHeaders(), HttpStatus.CREATED);
+    // }
 	
 	
 	@GetMapping("/roles")
@@ -71,9 +73,10 @@ public class UsersRoleController {
 	@GetMapping("roles/{id}")
 	@Operation(summary = "Get user role by id", description = " Get  user role by id ")
 
-	public ResponseEntity<UsersRole> getUserRoleById(@PathVariable int id) throws Exception {
+	public ResponseEntity<RolesDto> getUserRoleById(@PathVariable int id) throws Exception {
 		
-		UsersRole getUsers = roleService.getUserRoleById(id);
+		RolesDto rolesDto=new RolesDto();
+		RolesDto getUsers = roleService.getUserRoleById(id,rolesDto);
 		
 		return new ResponseEntity<>(getUsers, new HttpHeaders(), HttpStatus.OK);
 	}

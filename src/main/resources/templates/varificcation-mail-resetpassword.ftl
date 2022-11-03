@@ -270,7 +270,7 @@ table, td { color: #000000; } #u_body a { color: #fdc71b; text-decoration: under
       </td>
     </tr>
   </tbody>
-</table> -->
+</table> 
 
  <#--  <table style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
@@ -290,7 +290,7 @@ table, td { color: #000000; } #u_body a { color: #fdc71b; text-decoration: under
       <!-- </td>
     </tr>
   </tbody>
-</table>  --> --> -->
+</table>  --> 
 
   <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
   </div>

@@ -1,19 +1,14 @@
 package com.techriff.userdetails.entity;
 
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +30,8 @@ public class UsersRole {
 	@Column(name = "role_id")
 	private int id;
 	private String role;
+	@Transient
+	private List<Integer> permissionId;
 	//@ManyToMany(fetch = FetchType.LAZY,mappedBy = "usersRole")
 	//@JsonBackReference
 	//private List<Users> user;

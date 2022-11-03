@@ -1,8 +1,6 @@
 package com.techriff.userdetails.dto;
 
 import java.util.Date;
-import java.util.List;
-
 import lombok.Data;
 
 @Data

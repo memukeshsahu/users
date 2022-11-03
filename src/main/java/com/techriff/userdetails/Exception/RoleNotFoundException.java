@@ -1,7 +1,5 @@
 package com.techriff.userdetails.Exception;
 
-import java.util.function.Supplier;
-
 public class RoleNotFoundException extends Exception {
 
 	public RoleNotFoundException() {
@@ -17,12 +15,10 @@ public class RoleNotFoundException extends Exception {
 
 	public RoleNotFoundException(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
 	}
 
 	public RoleNotFoundException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 	public RoleNotFoundException(Throwable cause) {

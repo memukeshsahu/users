@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RolePermissionMapPK implements Serializable {
 
-    private int role_id;
-    private int permissionId;
+    private int roleId_FK;
+    private int permissionId_FK;
     
     public RolePermissionMapPK(int role_id, int permissionId) {
-        this.role_id = role_id;
-        this.permissionId = permissionId;
+        this.roleId_FK = role_id;
+        this.permissionId_FK = permissionId;
     }
 
 }

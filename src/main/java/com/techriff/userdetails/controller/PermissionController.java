@@ -23,9 +23,9 @@ public class PermissionController {
     @Autowired
     private PermissionService permissionService;
     @PostMapping("/permissions")
-    public ResponseEntity<List< Permission>>addPermissions(@RequestBody List<Permission> permissions)
+    public ResponseEntity<Permission>addPermissions(@RequestBody Permission permissions)
     {
-        List<Permission> addPermissions=permissionService.addListOfPermission(permissions);
+        Permission addPermissions=permissionService.addListOfPermission(permissions);
         return new ResponseEntity<>(addPermissions,new HttpHeaders(),HttpStatus.CREATED);
     }
     @GetMapping("/permissions")

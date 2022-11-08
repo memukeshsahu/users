@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Embeddable
 @Entity
-@Table(name = "tbl_user_user_role")
+@Table(name = "tbl_user_role")
 public class UserRoleMap {
 	
 	@EmbeddedId

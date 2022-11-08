@@ -13,13 +13,13 @@ public class PermissionService {
     @Autowired
     private PermissionRepository permissionRepository;
 
-    public List<Permission> addListOfPermission(List<Permission> permissions) {
+    public Permission addListOfPermission(Permission permissions) {
 
         // for (Permission permission : permissions) {
 
         //     permission.setPermission(permission.getPermission());
         // }
-        List<Permission> saveData= permissionRepository.saveAll(permissions);
+        Permission saveData= permissionRepository.save(permissions);
         return saveData;
     }
 

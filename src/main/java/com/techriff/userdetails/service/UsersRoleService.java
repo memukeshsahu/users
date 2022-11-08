@@ -121,7 +121,7 @@ public class UsersRoleService {
 		List<RolesPermissionMapDto> rolesPermissionMapDto=new ArrayList<RolesPermissionMapDto>();
 		for (RolesPermissionMap existingRolesPermissionMap : rolesPermissionMaps) {
 			RolesPermissionMapDto existingRolesPermissionMapDto=new RolesPermissionMapDto();
-			Optional<Permission> maps=permissionRepository.findById(existingRolesPermissionMap.getId().getPermissionId());
+			Optional<Permission> maps=permissionRepository.findById(existingRolesPermissionMap.getId().getPermissionId_FK());
 			int permissionId=maps.get().getId();
 			existingRolesPermissionMapDto.setPermissionId(permissionId);
 			Optional<Permission> permission=permissionRepository.findById(permissionId);

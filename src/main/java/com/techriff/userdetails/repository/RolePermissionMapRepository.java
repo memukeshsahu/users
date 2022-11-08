@@ -11,9 +11,9 @@ import com.techriff.userdetails.entity.RolePermissionMapPK;
 import com.techriff.userdetails.entity.RolesPermissionMap;
 
 @Repository
-public interface RolePermissionMapRepository extends JpaRepository<RolesPermissionMap,RolePermissionMapPK> ,JpaSpecificationExecutor<RolesPermissionMap>{
+public interface RolePermissionMapRepository extends JpaRepository<RolesPermissionMap,Integer> {
 
-    @Query("Select n from RolesPermissionMap n where n.id.role_id=:role_id")
+    @Query("Select n from RolesPermissionMap n where n.id.roleId_FK=:role_id")
     List<RolesPermissionMap> findByRoleId(int role_id);
     
 }

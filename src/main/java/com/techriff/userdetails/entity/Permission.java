@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class Permission {
+
+public class Permission extends Auditable  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String permission;
+   
 
 }

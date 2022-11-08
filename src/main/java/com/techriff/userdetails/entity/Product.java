@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @DynamicInsert
 @DynamicUpdate
 @AllArgsConstructor
-public class Product {
+public class Product  extends Auditable{
     @Id
 		@Column(name = "productId")
 		@GeneratedValue(strategy = GenerationType.IDENTITY)

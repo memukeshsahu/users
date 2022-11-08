@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "tbl_userRole")
+@Entity(name = "tbl_role")
 @Getter
 @Setter
 @Data

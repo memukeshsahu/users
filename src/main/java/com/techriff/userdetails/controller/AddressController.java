@@ -1,25 +1,15 @@
 package com.techriff.userdetails.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techriff.userdetails.Exception.ResourceNotFoundException;
-import com.techriff.userdetails.dto.UserDTO;
-import com.techriff.userdetails.entity.Address;
-import com.techriff.userdetails.entity.Users;
 import com.techriff.userdetails.service.AddressService;
-import com.techriff.userdetails.service.UsersDetailsService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @RestController

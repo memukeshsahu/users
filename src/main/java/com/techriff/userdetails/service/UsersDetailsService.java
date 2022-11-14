@@ -410,9 +410,10 @@ public class UsersDetailsService {
 
     public void createTemporaryPasswordForUser(Users existingUsers, String password) {
         
-        TemporaryPassword tempPassword=new TemporaryPassword(passwordEncoder.encode(password) ,existingUsers);
+        TemporaryPassword tempPassword=new TemporaryPassword(password ,existingUsers);
       //  TemporaryPassword tempPassword=new TemporaryPassword(password ,existingUsers);
         tempPassword.setFlag(true);
+        tempPassword.setTempPassword(passwordEncoder.encode(password));
         tempRepo.save(tempPassword);
         existingUsers.setPasswordType("Temporary");
         usersRepository.save(existingUsers);

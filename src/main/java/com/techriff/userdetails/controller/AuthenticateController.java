@@ -52,25 +52,7 @@ public class AuthenticateController {
     {
         JSONObject result=new JSONObject();
         try {
-            // Users existingUsers=userRepo.findByEmailAdress(authonticationRequest.getUsername());
-            // String emailAdress=existingUsers.getEmailAdress();
-            // String password=existingUsers.getPassword();
-            // Optional<TemporaryPassword> tempPassword=temporaryPasswordRepository.findTempPassword(existingUsers.getId());
-            // if(tempPassword.isPresent()&& tempPassword.get().isFlag()==false && tempPassword.get().getTempPassword().equals(authonticationRequest.getPassword()))
-            // {
-            //     String temporaryPassword=tempPassword.get().getTempPassword();
-            //    // System.out.println(temporaryPassword);
-            //     authenticationManager.authenticate(
-            //             new UsernamePasswordAuthenticationToken(authonticationRequest.getUsername(), temporaryPassword));
-            // }
-            // else if(password.equals(authonticationRequest.getPassword()))
-            // {
-            //     authenticationManager.authenticate(
-            //             new UsernamePasswordAuthenticationToken(authonticationRequest.getUsername(), authonticationRequest.getPassword()));
-            // }
-            
-           // authenticationManager.authenticate()
-            
+         
             authenticationManager.authenticate(
                         new UsernamePasswordAuthenticationToken(authonticationRequest.getUsername(), authonticationRequest.getPassword()));
         }

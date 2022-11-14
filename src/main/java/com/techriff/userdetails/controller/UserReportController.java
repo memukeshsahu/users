@@ -3,8 +3,6 @@ package com.techriff.userdetails.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,26 +10,19 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.activation.DataSource;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techriff.userdetails.dto.MailRequest;
-import com.techriff.userdetails.dto.MailResponse;
 import com.techriff.userdetails.dto.ReportDTO;
 import com.techriff.userdetails.entity.Address;
 import com.techriff.userdetails.entity.UserRoleMap;
@@ -43,8 +34,6 @@ import com.techriff.userdetails.repository.UsersRepository;
 import com.techriff.userdetails.repository.UsersRoleRepository;
 
 import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 //import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -112,9 +101,9 @@ public class UserReportController {
             Address addressReportMap=addressRepository.findPrimaryAddress(user.getId());
             if(addressReportMap==null)
             {
-                reportDto.setAddress("EMPTY ADDRESS");
-                reportDto.setCity("EMPTY CITY ");
-                reportDto.setState("EMPTY STATE");
+                reportDto.setAddress(" ");
+                reportDto.setCity(" ");
+                reportDto.setState(" ");
                 reportDto.setZipCode(0);
                 
             }

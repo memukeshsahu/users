@@ -130,8 +130,6 @@ public class UsersRoleService {
 		}
 		rolesDto.setPermission(rolesPermissionMapDto);
 
-
-
 		return rolesDto;
 	}
 

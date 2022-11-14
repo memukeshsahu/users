@@ -1,9 +1,11 @@
 package com.techriff.userdetails.jwtAutontication.security.configuration.userDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,17 +28,9 @@ public class MyUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Users existingUsers=userRepo.findByEmailAdress(email);
 		String emailAdress=existingUsers.getEmailAdress();
-//		String Password=existingUsers.getPassword();
-//		// System.out.println(Password);
-//	Optional<TemporaryPassword> tempPassword=temporaryPasswordRepository.findTempPassword(existingUsers.getId());
-//	
-//	if(tempPassword.isPresent()&& tempPassword.get().isFlag()==false)
-//	{
-//	    String temporaryPassword=tempPassword.get().getTempPassword();
-//	   // System.out.println(temporaryPassword);
-//	    return new User(emailAdress,temporaryPassword,new ArrayList<>());   
-//	}
-//	else 
+		//Collection<? extends GrantedAuthority> role =new ArrayList<String>();
+		//role_permission.add("");
+		//role.add("admin");
 		String password=null;
 		if((existingUsers.getPasswordType()).toLowerCase().equals("primary"))
 		{

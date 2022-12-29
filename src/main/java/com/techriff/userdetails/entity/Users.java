@@ -5,18 +5,27 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.ParameterMode;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.techriff.userdetails.dto.SpUsersDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,11 +34,43 @@ import lombok.Setter;
 
 	
 	@Entity
+	@SqlResultSetMapping(
+		name = "SpUsersDto", classes = {
+			@ConstructorResult(targetClass = SpUsersDto.class,
+			columns = {
+				@ColumnResult(name = "user_id"),
+				@ColumnResult(name = "first_name"),
+				@ColumnResult(name = "last_name"),
+				@ColumnResult(name = "email_adress"),
+				@ColumnResult(name="dob"),
+				@ColumnResult(name = "address_id"),
+				@ColumnResult(name = "address"),
+				@ColumnResult(name = "city"),
+				@ColumnResult(name = "state"),
+				@ColumnResult(name = "zip_code")
+
+
+			}
+			)
+		})
 	@Table(name = "tblUserDetails")
 	@Getter
 	@Setter
 	@NoArgsConstructor
 	@AllArgsConstructor
+	@NamedStoredProcedureQueries(
+		{ 
+			@NamedStoredProcedureQuery
+			(
+				name="firstStoredProcedure",procedureName = "sp_find_user_by_name_and_email",resultSetMappings = {"SpUsersDto"},
+				parameters = {
+					@StoredProcedureParameter(mode = ParameterMode.IN,name = "email",type = String.class),
+					@StoredProcedureParameter(mode = ParameterMode.IN,name = "name",type = String.class)
+					
+				}
+			)
+		}
+	)
 	public class Users  {
 		@Id
 		@Column(name = "userId")

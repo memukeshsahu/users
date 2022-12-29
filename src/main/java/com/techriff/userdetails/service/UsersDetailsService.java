@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -30,6 +33,7 @@ import com.techriff.userdetails.Exception.ResourceNotFoundException;
 import com.techriff.userdetails.dto.AddressDto;
 import com.techriff.userdetails.dto.MailRequest;
 import com.techriff.userdetails.dto.MailResponse;
+import com.techriff.userdetails.dto.SpUsersDto;
 import com.techriff.userdetails.dto.UserDTO;
 import com.techriff.userdetails.dto.UserRoleMapDTO;
 import com.techriff.userdetails.entity.Address;
@@ -77,6 +81,9 @@ public class UsersDetailsService {
     @Autowired PasswordResetTokenRepository passwordResetTokenRepository;
     @Autowired TemporaryPasswordRepository  tempRepo;
     
+    @Autowired
+    @PersistenceContext
+	private EntityManager entityManager;
 
 
     private EmailService emailService;
@@ -418,6 +425,19 @@ public class UsersDetailsService {
         existingUsers.setPasswordType("Temporary");
         usersRepository.save(existingUsers);
         
+    }
+
+    public  List<SpUsersDto> getUserDeatailsByNameAndEmail(String email, String name) {
+     //  return usersRepository.getUserDeatailsByNameAndEmail(email,name);
+     List<SpUsersDto> users= entityManager.createNamedStoredProcedureQuery("firstStoredProcedure")
+       .setParameter("email", email)
+       .setParameter("name", name)
+       .getResultList();
+       //System.out.println(users.iterator());
+       System.out.println(users.size()); 
+
+       return users;
+    
     }
 
    

@@ -17,8 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "RolePermissionMapTbl")
 public class RolesPermissionMap  {
     
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPk;
+   
     @EmbeddedId
 	private RolePermissionMapPK id;
     

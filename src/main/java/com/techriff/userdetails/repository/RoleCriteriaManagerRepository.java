@@ -63,7 +63,7 @@ public class RoleCriteriaManagerRepository {
 
 	private Predicate getPredicate(RolesSearchCriteria rolesSearchCriteria, Root<UsersRole> usersRoleRoot) {
 		List<Predicate> predicates = new ArrayList<>();
-		if (Objects.nonNull(rolesSearchCriteria.getSearchQuery())) {
+		if (Objects.nonNull(rolesSearchCriteria.getSearchQuery().toLowerCase())) {
 			predicates.add(
 					criteriaBuilder.like(usersRoleRoot.get("role"), "%" + rolesSearchCriteria.getSearchQuery() + "%"));
 

@@ -1,6 +1,8 @@
 package com.techriff.userdetails.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -26,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.techriff.userdetails.Exception.ResourceNotFoundException;
 import com.techriff.userdetails.dto.PasswordDto;
+import com.techriff.userdetails.dto.SpUsersDto;
 import com.techriff.userdetails.dto.UserDTO;
 import com.techriff.userdetails.entity.PasswordModel;
 import com.techriff.userdetails.entity.Users;
@@ -110,7 +113,7 @@ public class UsersController {
         return new ResponseEntity<>(usersService.getUserDetails(usersPage, usersSearchCriteria), new HttpHeaders(),
                 HttpStatus.OK);
     }
-    @PutMapping("users/{emailAddress}/changePassword")
+    @PutMapping("/users/{emailAddress}/changePassword")
   public ResponseEntity<String>  resetPassword(@RequestBody PasswordDto password,@PathVariable String emailAddress) throws Exception
   {
         String resetPassword=passwordService.resetPassword(password,emailAddress);
@@ -125,6 +128,15 @@ public class UsersController {
 //        return new ResponseEntity<>(resetPassword,new HttpHeaders(),HttpStatus.OK);
 //        
 //    }
+
+@GetMapping("/users/spsearch")
+public ResponseEntity<List<SpUsersDto>> getUserDeatailsByNameAndEmail(@RequestParam String email, @RequestParam String name)
+{   
+    //Map<String, String> susers =new HashMap<>();
+    List<SpUsersDto> users= usersService.getUserDeatailsByNameAndEmail(email,name);
+    return new ResponseEntity<>(users,new HttpHeaders(),HttpStatus.OK);
+    
+}
     
 
 }

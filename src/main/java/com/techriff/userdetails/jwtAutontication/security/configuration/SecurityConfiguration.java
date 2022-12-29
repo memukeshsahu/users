@@ -28,20 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(myUserDetailsService);
 	}
 
-	// @Bean
-	// public PasswordEncoder passwordEncoder() {
-	// 	return NoOpPasswordEncoder.getInstance();
-
-	// }
-	// @Bean
-	// public DaoAuthenticationProvider authProvider()
-	// {
-	// 	DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
-	// 	authenticationProvider.setUserDetailsService(myUserDetailsService);
-	// 	authenticationProvider.setPasswordEncoder(getPasswordEncoder());
-	// 	return authenticationProvider;
-		
-	// }
+	
 	@Bean
 	public PasswordEncoder getPasswordEncoder()
 	{
@@ -55,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.disable()
 		.authorizeRequests()
 		.antMatchers("/users/resetPassword","/swagger-ui/**","/v3/api-docs/**","/authenticate",
-		        "/users/report","/users/forgotPassword/**","/users/varifyMailForNewPassword**").permitAll()
+		        "/users/report","/users/forgotPassword/**","/users/varifyMailForNewPassword**","/users").permitAll()
 		.anyRequest().authenticated()
 		.and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
